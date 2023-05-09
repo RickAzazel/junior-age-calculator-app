@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<!-- displays site properly based on user's device -->
+	<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,700;1,400;1,800&display=swap"
+		rel="stylesheet">
+	<link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png">
+	<link rel="stylesheet" href="./style.css">
+	<title>Frontend Mentor | Age calculator app</title>
+</head>
+
+<body>
+	<div class="wrapper">
+		<div class="container">
+			<section class="calculator">
+				<div class="calculator__inner">
+					<div class="data-input">
+						<div class="data-input__inner">
+							<form class="form" id="form" action="#">
+								<div class="input-control">
+									<label class="label" for="day">Day</label>
+									<input class="input data-input__input" id="day" name="day" type="text" maxlength="2" placeholder="DD">
+									<p class="error-text"></p>
+								</div>
+								<div class="input-control">
+									<label class="label" for="month">Month</label>
+									<input class="input data-input__input" id="month" name="month" type="text" maxlength="2" placeholder="MM">
+									<p class="error-text"></p>
+								</div>
+								<div class="input-control">
+									<label class="label" for="year">Year</label>
+									<input class="input data-input__input" id="year" name="year" type="text" maxlength="4" placeholder="YYYY">
+									<p class="error-text"></p>
+								</div>
+								<p class="error-text" id="form-error"></p>
+								<button class="btn" type="submit">
+									<span class="btn__icon"></span>
+								</button>
+							</form>
+						</div>
+					</div>
+					<div class="data-output">
+						<div class="data-output__inner">
+							<p class="record-text">
+								<span id="record-number__years" class="record-number">- -</span> years
+							</p>
+							<p class="record-text">
+								<span id="record-number__months" class="record-number">- -</span> months
+							</p>
+							<p class="record-text">
+								<span id="record-number__days" class="record-number">- -</span> days
+							</p>
+						</div>
+					</div>
+				</div>
+			</section>
+		</div>
+	</div>
+	<script src="./script.js"></script>
+</body>
+
+</html>
