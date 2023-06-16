@@ -1,36 +1,12 @@
+/* ================== Variables ================== */
 const form = document.getElementById('form');
 const day = document.getElementById('day');
 const month = document.getElementById('month');
 const year = document.getElementById('year');
-const currentDate = new Date();
-const inputDate = new Date(year.value, month.value - 1, day.value);
 
-// Check if day from 1 to 31
-day.addEventListener('input', e => {
-	checkInput(day, 'Must be a valid day');
-});
-
-// Check if month from 1 to 12
-month.addEventListener('input', e => {
-	checkInput(month, 'Must be a valid month');
-});
-
-// Check if year is less than or equal to current year
-year.addEventListener('input', e => {
-	checkInput(year, 'Must be in the past');
-});
-
-// Check if inputs are valid, calculate age and show the result.
-form.addEventListener('submit', e => {
-	e.preventDefault();
-
-	if (validateInputs()) {
-		showResult(calculatedAge());
-	}
-});
-
+/* ================== Functions ================== */
 /* 
- *  This method paints the boundaries of the given input in red 
+ *  Paints the boundaries of the given input in red 
  *  and displays the error text.
  * 
  *  @param element - given input.
@@ -45,7 +21,7 @@ const setErrorOnInput = (element, message) => {
 }
 
 /* 
- *  This method restores the  border's native color on the
+ *  Restores the  border's native color on the
  *  given input and removes the error text.
  * 
  *  @param element - given input.
@@ -59,7 +35,7 @@ const setSuccessOnInput = (element) => {
 }
 
 /* 
- *  This method paints the boundaries of all the inputs in red 
+ *  Paints the boundaries of all the inputs in red 
  *  and displays the error text.
  * 
  *  @param message - error text to display.
@@ -72,7 +48,7 @@ const setErrorOnForm = (message) => {
 }
 
 /* 
- *  This method restores the  border's native color of all
+ *  Restores the  border's native color of all
  *  the inputs and removes the error text.
 */
 const setSuccessOnForm = () => {
@@ -83,7 +59,7 @@ const setSuccessOnForm = () => {
 }
 
 /* 
- *  This method takes one of the elements from the given input 
+ *  Takes one of the elements from the given input 
  *  (day, month or year) and checks that the day is from 1 to 31, 
  *  the month is from 1 to 12 and the year must be no more than 
  *  or equal to the current one.
@@ -109,7 +85,7 @@ const isValidRecord = (element) => {
 }
 
 /* 
- *  This method checks if the input data is valid. 
+ *  Checks if the input data is valid. 
  *  If it's not valid, then its borders are painted red 
  *  and an error text appears.
  *  
@@ -128,7 +104,7 @@ const checkInput = (element, message) => {
 }
 
 /* 
- *  This method checks if submitted is valid. 
+ *  Checks if submitted is valid. 
  *  If it's not valid, then its borders are painted red, 
  *  an error text appears and the method returns false.
  *  Othewise the method returns true.
@@ -152,10 +128,12 @@ const validateInputs = () => {
 
 	if (dayValue === '') {
 		setErrorOnInput(day, 'This field is required');
+		return false;
 	}
 	else if (dayValue !== inputDay) {
 		setSuccessOnInput(day);
 		setErrorOnForm('Must be a valid date');
+		return false;
 	}
 	else {
 		setSuccessOnInput(day);
@@ -168,6 +146,7 @@ const validateInputs = () => {
 	else if (monthValue !== inputMonth) {
 		setSuccessOnInput(month);
 		setErrorOnForm('Must be a valid date');
+		return false;
 	}
 	else {
 		setSuccessOnInput(month);
@@ -176,10 +155,12 @@ const validateInputs = () => {
 
 	if (yearValue === '') {
 		setErrorOnInput(year, 'This field is required');
+		return false;
 	}
 	else if (yearValue !== inputYear) {
 		setSuccessOnInput(year);
 		setErrorOnForm('Must be a valid date');
+		return false;
 	}
 	else {
 		setSuccessOnInput(year);
@@ -199,7 +180,7 @@ const validateInputs = () => {
 };
 
 /* 
- *  This method counts the number of days, months, and years 
+ *  Counts the number of days, months, and years 
  *  and returns it all in an array.
  *  
  *  @return - the array with calculated days, months and years.
@@ -243,7 +224,7 @@ const calculatedAge = () => {
 };
 
 /* 
- *  This method takes an array with calculated days, months and 
+ *  Takes an array with calculated days, months and 
  *  years and displays the data on the screen. 
  *  
  *  @param calculatedData - the array with calculated days, months and years.
@@ -252,12 +233,33 @@ const showResult = (calculatedData) => {
 	const displayDays = document.getElementById('record-number__days');
 	const displayMonth = document.getElementById('record-number__months');
 	const displayYears = document.getElementById('record-number__years');
-
+	
 	displayDays.innerText = calculatedData[0];
 	displayMonth.innerText = calculatedData[1];
 	displayYears.innerText = calculatedData[2];
 }
 
+/* ================== Events ================== */
+// Check if day from 1 to 31
+day.addEventListener('input', e => {
+	checkInput(day, 'Must be a valid day');
+});
 
+// Check if month from 1 to 12
+month.addEventListener('input', e => {
+	checkInput(month, 'Must be a valid month');
+});
 
+// Check if year is less than or equal to current year
+year.addEventListener('input', e => {
+	checkInput(year, 'Must be in the past');
+});
 
+// Check if inputs are valid, calculate age and show the result.
+form.addEventListener('submit', e => {
+	e.preventDefault();
+
+	if (validateInputs()) {
+		showResult(calculatedAge());
+	} 
+});
